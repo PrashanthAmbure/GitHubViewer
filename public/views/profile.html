@@ -1,0 +1,57 @@
+<div class="profile-div">
+    <div class="ibox-title">
+        <h5>Your Profile</h5>
+    </div>
+    <div class="ibox-content">
+        <div class="your-profile">
+            <div class="profile-info-div">
+                <p class="profile-info-title">GitHub URL</p>
+                <a class="profile-info" href="{{user.html_url}}" target="_blank">{{user.html_url}}</a>
+            </div>
+            <div class="profile-info-div">
+                <p class="profile-info-title">Following</p>
+                <p class="profile-info">{{user.following}}</p>
+            </div>
+            <div class="profile-info-div">
+                <p class="profile-info-title">Followers</p>
+                <p class="profile-info">{{user.followers}}</p>
+            </div>
+            <div class="profile-info-div">
+                <p class="profile-info-title">Company</p>
+                <p class="profile-info">{{user.company}}</p>
+            </div>
+            <div class="profile-info-div">
+                <p class="profile-info-title">Location</p>
+                <p class="profile-info">{{user.location}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="followers-div" ng-controller="followerFormCtrl">
+    <div class="ibox-title">
+        <h5>Your Followers</h5>
+    </div>
+    <div class="ibox-content">
+        <div class="f-list">
+            <div class="f-profile" ng-repeat="follower in followers">
+                <p><img ng-src="{{follower.avatar_url}}" class="f-profile-pic"/></p>
+                <p class="f-login-name" ng-click="followerSearch(follower.login)">{{follower.login}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="following-div" ng-controller="followingFormCtrl">
+    <div class="ibox-title">
+        <h5>You're Following</h5>
+    </div>
+    <div class="ibox-content">
+        <div class="f-list">
+            <div class="f-profile" ng-repeat="following in followings">
+                <p><img ng-src="{{following.avatar_url}}" class="f-profile-pic"/></p>
+                <p class="f-login-name" ng-click="followingSearch(following.login)">{{following.login}}</p>
+            </div>
+        </div>
+    </div>
+</div>

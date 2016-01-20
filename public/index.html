@@ -1,0 +1,83 @@
+<!doctype html>
+<html ng-app="githubProfileViewer">
+  <head>
+      <title>GitHub Viewer</title>
+      
+      <!-- Stylesheets here -->
+      <link rel="stylesheet" href="stylesheets/global.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      
+      <!-- Scripts here -->
+      <script src="javascripts/jquery-2.1.4.js"></script>
+      <script src="javascripts/bootstrap.min.js"></script>
+      <script src="javascripts/angular-1.3.15.js"></script>
+      <script src="javascripts/angular-route-1.3.15.min.js"></script>
+
+      <script src="javascripts/services/globalService.js"></script>
+      <script src="javascripts/controllers/userInfoCtrl.js"></script>
+      <script src="javascripts/controllers/searchFormCtrl.js"></script>
+      <script src="javascripts/controllers/profileCtrl.js"></script>
+      <script src="javascripts/controllers/followerFormCtrl.js"></script>
+      <script src="javascripts/controllers/followingFormCtrl.js"></script>
+      <script src="javascripts/main.js"></script>
+  </head>
+  <body>
+      <div class="main">
+          
+          <div class="rowHeader">GitHub Profile Viewer</div>
+          
+          <div class="row">
+              <div class="col-md-2 nav-left" ng-controller="userInfoCtrl">
+                  <div class="profile-img-div">
+                      <div class="github-img-username" ng-show="user.name">
+                          <img ng-src="{{user.avatar_url}}" class="github-profile-pic" />
+                          <p class="github-username">{{user.name}}</p>
+                      </div>
+                  </div>
+                  
+                  <nav class="navbar-default" role="navigation">
+                      <ul class="nav" ng-show="user.name">
+                          <li class="profile-a active">
+                              <a href="#profile">
+                                  <i class="fa fa-user"></i>
+                                  <span class="nav-label" ng-click="profile()">Profile</span>
+                              </a>
+                          </li>
+                          
+                          <li class="activitystream-a">
+                              <a href="#activityStream">
+                                  <i class="fa fa-rss"></i>
+                                  <span class="nav-label" ng-click="activityStream()">Activity Stream</span>
+                              </a>
+                          </li>
+                          
+                      </ul>
+                  </nav>
+              </div>
+              
+              <div class="col-md-10 main-content">
+                  
+                  <div class="searchRowHeader" ng-controller="searchFormCtrl">
+                      <form ng-submit="profileSearch($event)">
+                          <div class="search-div">
+                              <input type="text" class="searchTextField" placeholder="Profile name to search..." name="profileName" ng-model="profileName" />
+                          </div>
+                      </form>
+                  </div>
+                  
+                  <div class="row content">
+                      
+                      <div class="error-msg-div">
+                          <p class="error-msg-content">{{failureMsg.message}}</p>
+                      </div>
+
+                      <div ng-view></div>
+
+                  </div>
+                                    
+              </div>
+          </div>
+      </div>
+  </body>
+</html>  
